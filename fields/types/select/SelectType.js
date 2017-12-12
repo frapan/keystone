@@ -180,5 +180,13 @@ select.prototype.format = function (item) {
 	return this.labels[item.get(this.path)] || '';
 };
 
+select.prototype.updateItem = function (item, data, callback) {
+	var value = this.getValueFromData(data);
+	if (value !== item.get(this.path)) {
+		item.set(this.path, value);
+	}
+	process.nextTick(callback);
+};
+
 /* Export Field Type */
 module.exports = select;
