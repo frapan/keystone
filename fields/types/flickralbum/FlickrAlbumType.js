@@ -188,13 +188,13 @@ flickralbum.prototype.format = function (item) {
 	return this.labels[item.get(this.path)] || '';
 };
 
-flickralbum.prototype.updateItem = function(item, data, callback) {
+flickralbum.prototype.updateItem = function (item, data, callback) {
 	var value = this.getValueFromData(data);
-	if (value != item.get(this.path)) {
+	if (value !== item.get(this.path)) {
 		item.set(this.path, value);
 	}
 	process.nextTick(callback);
-}
+};
 
 /* Export Field Type */
 module.exports = flickralbum;
