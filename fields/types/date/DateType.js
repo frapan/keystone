@@ -191,7 +191,7 @@ date.prototype.inputIsValid = function (data, required, item) {
  */
 date.prototype.updateItem = function (item, data, callback) {
 	var value = this.getValueFromData(data);
-	if (value !== null && value !== '') {
+	if (value !== undefined && value !== null && value !== '') {
 		// If the value is not null, empty string or undefined, parse it
 		var newValue = this.parse(value);
 		// If it's valid and not the same as the last value, save it

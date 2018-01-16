@@ -106,19 +106,19 @@ datetime.prototype.inputIsValid = function (data, required, item) {
 datetime.prototype.updateItem = function (item, data, callback) {
 	// Get the values from the data
 	var value = this.getInputFromData(data);
-	if (value !== undefined) {
-		if (value !== null && value !== '') {
-			// If the value is not null, empty string or undefined, parse it
-			var newValue = this.parse(value, this.parseFormatString, true);
-			// If it's valid and not the same as the last value, save it
-			if (!item.get(this.path) || !newValue.isSame(item.get(this.path))) {
-				item.set(this.path, newValue.toDate());
-			}
-		// If it's null or empty string, clear it out
-		} else {
-			item.set(this.path, null);
+	// if (value !== undefined) {
+	if (value !== undefined && value !== null && value !== '') {
+		// If the value is not null, empty string or undefined, parse it
+		var newValue = this.parse(value, this.parseFormatString, true);
+		// If it's valid and not the same as the last value, save it
+		if (!item.get(this.path) || !newValue.isSame(item.get(this.path))) {
+			item.set(this.path, newValue.toDate());
 		}
+	// If it's null or empty string, clear it out
+	} else {
+		item.set(this.path, null);
 	}
+	// }
 	process.nextTick(callback);
 };
 
