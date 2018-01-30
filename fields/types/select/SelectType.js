@@ -34,6 +34,9 @@ function select (list, path, options) {
 	if (options.emptyOption === undefined) {
 		options.emptyOption = true;
 	}
+	if (this.emptyOption) {
+		this.ops.unshift({ label: '', value: '' });
+	}
 	// ensure this.emptyOption is a boolean
 	this.emptyOption = !!options.emptyOption;
 	// cached maps for options, labels and values

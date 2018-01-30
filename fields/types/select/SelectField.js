@@ -60,6 +60,7 @@ module.exports = Field.create({
 					value={value}
 					options={options}
 					onChange={this.valueChanged}
+					resetValue={''}
 				/>
 			</div>
 		);
