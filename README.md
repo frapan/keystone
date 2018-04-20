@@ -5,6 +5,11 @@
 * Empty Select can now be saved
 * Added a new FlickrAlbum type to show a Select of Flickr albums
 
+## Fork Contributors
+
+* frapan
+* alewin
+
 ## License
 
 (The MIT License)
