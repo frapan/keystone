@@ -44,10 +44,7 @@ module.exports = Field.create({
 		value: React.PropTypes.array,
 	},
 	addItem () {
-        var _props =  this.props,
-        path = _props.path,
-        value = _props.value || [],
-        onChange = _props.onChange;
+		const { path, value = [], onChange } = this.props;
 		onChange({
 			path,
 			value: [
@@ -86,7 +83,7 @@ module.exports = Field.create({
 			props.values = value;
 			props.onChange = this.handleFieldChange.bind(this, index);
 			props.mode = 'edit';
-			props.inputNamePrefix = `${this.props.path}[${index}]`;
+			props.inputNamePrefix = `${this.props.inputNamePrefix || this.props.path}[${index}]`;
 			props.key = field.path;
 			// TODO ?
 			// if (props.dependsOn) {
@@ -99,7 +96,8 @@ module.exports = Field.create({
 		}, this);
 	},
 	renderItems () {
-		const { value = [], path } = this.props;
+		const { value = [], path, inputNamePrefix } = this.props;
+		this.props.inputNamePrefix = ((a, b) => a?`${a}[${b}]`:b)(inputNamePrefix, path);
 		const onAdd = this.addItem;
 		return (
 			<div>
