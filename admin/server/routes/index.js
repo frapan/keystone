@@ -13,9 +13,17 @@ module.exports = function IndexRoute (req, res) {
 
 	var UserList = keystone.list(keystone.get('user model'));
 
-	var orphanedLists = keystone.getOrphanedLists().map(function (list) {
-		return _.pick(list, ['key', 'label', 'path']);
-	});
+	// Mostra il gruppo Other in home page (orphanedLists) solo a chi è abilitato tramite il parametro nwRestrictHpOtherListsToEmails
+	var nwRestrictHpOtherListsToEmails = keystone.get('nwRestrictHpOtherListsToEmails');
+	var orphanedLists = [];
+	if (!nwRestrictHpOtherListsToEmails || !nwRestrictHpOtherListsToEmails.length || nwRestrictHpOtherListsToEmails.indexOf(req.user.email) >= 0) {
+		orphanedLists = keystone.getOrphanedLists().map(function (list) {
+			return _.pick(list, ['key', 'label', 'path']);
+		});
+	}
+//	var orphanedLists = keystone.getOrphanedLists().map(function (list) {
+//		return _.pick(list, ['key', 'label', 'path']);
+//	});
 
 	var backUrl = keystone.get('back url');
 	if (backUrl === undefined) {
